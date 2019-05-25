@@ -1,48 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% load static %}
   <meta charset="UTF-8">
   <title>Grid</title>
-  <style>
-    table {
-      padding-top: 5em;
-    }
-    td {
-      padding: 0;
-    }
-    input {
-      padding: 0;
-      width: 2em;
-      height: 2em;
-    }
-    div.topheader {
-      transform-origin: left;
-      transform: rotate(-90deg);
-      font-weight: bold;
-      }
-    div.leftheader {font-weight: bold}
-  </style>
+    <link rel="stylesheet" href="{% static 'gridview/grid.css' %}" />
+    <script  type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(document).on('click','input[type=text]',function(){ this.select(); });
+        });    </script>
+    <style>
+    </style>
 </head>
 <body>
 <form action="{% url 'updategrid' %}" method="post">
   {% csrf_token %}
-  <table>
-    {% for row in rows %}
-    <tr>
-      {% for cell in row %}
-      <td>
-        <div class="{{ cell.class }}">
+
+    <div class="gc">
+      {% for row in rows %}
+        {% for cell in row %}
           {% if cell.isdata %}
-            <input name = "{{ cell.name }}" type="text" value="{{ cell.value }}"/>
+            <div class="{{ cell.class }}c"><div class="{{ cell.class }}s">
+              <input type="text" name="{{ cell.dataname }}" value="{{ cell.datavalue }}">
+            </div></div>
           {% else %}
-            {{ cell.value }}
+            <div class="{{ cell.class }}c"><div class="{{ cell.class }}s">
+              {{ cell.label }}
+            </div></div>
           {% endif %}
-        </div>
-      </td>
+        {% endfor %}
       {% endfor %}
-    </tr>
-    {% endfor %}
-  </table>
+    </div>
   <input type="submit" value="save" />
 </form>
 </body>

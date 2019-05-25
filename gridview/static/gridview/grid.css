@@ -1,0 +1,80 @@
+:root{
+    --cell-size: 20px;
+    font-family: 'Lato', sans-serif;
+    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    font-size: 13px;
+}
+
+.tlc {
+    min-height: 70px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    border-right: solid #417690 1px;
+    border-bottom: solid #417690 1px;
+}
+
+.thc {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: bottom;
+    border-right: solid #417690 1px;
+    border-bottom: solid #417690 1px;
+}
+
+.lhc {
+    height: var(--cell-size);
+    border: 0;
+    margin: 0;
+    padding: 0;
+    border-right: solid #417690 1px;
+    border-bottom: solid #417690 1px;
+}
+
+.cc {
+    height: var(--cell-size);
+    border: 0;
+    margin: 0;
+    padding: 0;
+    border-right: solid #417690 1px;
+    border-bottom: solid #417690 1px;
+}
+
+.tls{
+    font-size: 20px;
+
+}
+
+.ths {
+    height: 100%;
+    writing-mode: vertical-rl;
+    vertical-align: bottom;
+}
+
+.lhs {}
+
+.cs {}
+
+.gc {
+    width: auto;
+    display: grid;
+    grid-template-columns:100px var(--cell-size) var(--cell-size) var(--cell-size) var(--cell-size);
+    padding: 1px;
+}
+
+.gc > div {
+    text-align: center;
+    padding: 0;
+    background-color: #eaeaea;
+}
+
+div.gc input {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    text-align: center;
+    background: none;
+}
