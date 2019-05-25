@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grid</title>
+  <style>
+    table {
+      padding-top: 5em;
+    }
+    td {
+      padding: 0;
+    }
+    input {
+      padding: 0;
+      width: 2em;
+      height: 2em;
+    }
+    div.topheader {
+      transform-origin: left;
+      transform: rotate(-90deg);
+      font-weight: bold;
+      }
+    div.leftheader {font-weight: bold}
+  </style>
+</head>
+<body>
+<form action="{% url 'updategrid' %}" method="post">
+  {% csrf_token %}
+  <table>
+    {% for row in rows %}
+    <tr>
+      {% for cell in row %}
+      <td>
+        <div class="{{ cell.class }}">
+          {% if cell.isdata %}
+            <input name = "{{ cell.name }}" type="text" value="{{ cell.value }}"/>
+          {% else %}
+            {{ cell.value }}
+          {% endif %}
+        </div>
+      </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+  <input type="submit" value="save" />
+</form>
+</body>
+</html>
