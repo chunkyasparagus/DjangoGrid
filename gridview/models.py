@@ -33,3 +33,10 @@ class Bond(models.Model):
     bonder = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='bonder')
     bondee = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='bondee')
     bond_level = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.bonder} vs {self.bondee}'
+
+    def __repr__(self):
+        return self.__str__()
+

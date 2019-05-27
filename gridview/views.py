@@ -37,13 +37,18 @@ def viewgrid(request):
 def updategrid(request):
     raw_grid_data = {int(key.split('_')[1]): data for key, data in request.POST.items() if key.startswith('griddata_')}
     grid_data = list(OrderedDict(sorted(raw_grid_data.items())).values())
-    everyone = Person.objects.all()
-    for bonder in everyone:
-        for bondee in everyone:
-            v = grid_data.pop(0)
-            bond_obj = Bond.objects.get(bonder__id=bonder.id, bondee__id=bondee.id)
-            if v != bond_obj.bond_level:
-                bond_obj.bond_level = v
-                bond_obj.save()
-
+    if len(grid_data) == Person.objects.count() ** 2:
+        everyone = Person.objects.all()
+        for bonder in everyone:
+            for bondee in everyone:
+                v = grid_data.pop(0)
+                bond_obj = Bond.objects.get(bonder__id=bonder.id, bondee__id=bondee.id)
+                if v != bond_obj.bond_level:
+                    bond_obj.bond_level = v
+                    bond_obj.save()
     return redirect('viewgrid')
+
+
+def highestbond(request):
+    all_bonds = Bond.objects.filter(bonder__name__in=['Isla', 'James']).order_by('-bond_level')
+    return HttpResponse(', '.join([str(b) for b in all_bonds]))
