@@ -5,6 +5,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="gridview.models.Person.objects" />
+          <option value="gridview.models.Bond.objects" />
         </list>
       </option>
     </inspection_tool>
